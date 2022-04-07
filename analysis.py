@@ -20,8 +20,9 @@ matplotlib.rcParams['figure.facecolor'] = '#00000000'
 iris_df = sns.load_dataset("iris") #load iris dataset directly from seaborn
 
 print(iris_df.head()) # exploring the dataset #https://towardsdatascience.com/eda-of-the-iris-dataset-190f6dfd946d
-print (iris_df.shape) # exploring the dataset 
-print(iris_df.info())  # exploring the dataset. info is an interesting one, because it shows us there are no empty or null values. This could be helpful in some cases.
+print(iris_df.shape) 
+print(iris_df.info())
+print(iris_df.describe(include='all'))
 
 sns.scatterplot(data=iris_df, x = 'sepal_length', y = 'sepal_width' , hue = 'species', s = 50)
 plt.title('Comparison between sepal width and length on the basis of species')
