@@ -16,9 +16,9 @@ matplotlib.rcParams['figure.figsize'] = (8, 4)
 matplotlib.rcParams['figure.facecolor'] = '#00000000'
 
 
-#iris_df = pd.read_csv('IRIS.csv') #creating the data frame iris_df by reading in the file from the directory with pandas and
+iris_df = pd.read_csv('IRIS.csv') #creating the data frame iris_df by reading in the file from the directory with pandas and
                                     #assigning it the variable iris_df
-iris_df = sns.load_dataset("iris") #load iris dataset directly from seaborn
+#iris_df = sns.load_dataset("iris") #load iris dataset directly from seaborn
 
 
 print('\033[1m' + 'Dataset head is shown below (first 5 rows of data):' + '\033[0m')
@@ -39,10 +39,13 @@ time.sleep(3)
 print("A summary of each of the variables will be output to the file variables.txt")
 print( )
 time.sleep(3)
+
 print(iris_df.describe(include='all')) #https://towardsdatascience.com/eda-of-the-iris-dataset-190f6dfd946d
-with open('variables.txt', mode='w') as file_object:
-            print((iris_df.describe(include='all')), file=file_object) #https://stackoverflow.com/questions/31247198/python-pandas-write-content-of-dataframe-into-text-file
+with open('variables.txt', mode='w') as file_object: #open function returns the file as a file object. w mode means write mode
+            print((iris_df.describe(include='all')), file=file_object) #the describe data is printed into the txt file
+#https://stackoverflow.com/questions/31247198/python-pandas-write-content-of-dataframe-into-text-file
 #iris_df.describe(include='all').np.savetxt("variables.txt")
+#file is closed automatically 
 print( )
 time.sleep(3)
 print('\033[1m' + 'A histogram of each variable will be displayed and saved as variables_histogram.png' + '\033[0m')
