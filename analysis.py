@@ -63,16 +63,6 @@ plt.tight_layout()
 plt.savefig("variables_histogram.png") #save the figure in the directory as a .png file
 plt.show()
 
-
-
-#sns.scatterplot(data=iris_df, x = 'sepal_length', y = 'sepal_width' , hue = 'species', s = 50)
-#plt.title('Comparison between sepal width and length on the basis of species')
-#plt.savefig("iris_plot_1.png") #save the figure in the directory as a .png file. (first show the plot, then save it!)
-#plt.show()
-
-
-#sns.scatterplot(data=iris_df, x = 'petal_length', y = 'petal_width', hue = 'species', s= 50, marker = 'D') #https://www.youtube.com/watch?v=MB6eqJDFU9Q
-#plt.title('Comparison between petal width and length on the basis of species')
-#plt.savefig("iris_plot_2.png") #save the figure in the directory as a .png file. (first show the plot, then save it!)
-#plt.show()
-
+sns.pairplot(data = iris_df,hue="species",height=3)
+plt.savefig("variables_pairplot.png") #save the figure in the directory as a .png file
+plt.show()
