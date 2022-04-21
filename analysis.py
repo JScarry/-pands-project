@@ -3,7 +3,7 @@
 
 #we need to import a number of different libraries. Matplot lib provides valuable plotting functions, and seaborn helps us use some of these functions
 import pandas as pd
-import numpy as np
+#import numpy as np
 import matplotlib
 #from matplotlib import rcParams
 import matplotlib.pyplot as plt
@@ -19,7 +19,7 @@ matplotlib.rcParams['figure.facecolor'] = '#00000000'
 iris_df = pd.read_csv('IRIS.csv') #creating the data frame iris_df by reading in the file from the directory with pandas and
                                     #assigning it the variable iris_df
 #iris_df = sns.load_dataset("iris") #load iris dataset directly from seaborn
-
+ 
 
 print('\033[1m' + 'Dataset head is shown below (first 5 rows of data):' + '\033[0m')
 print(iris_df.head()) # exploring the dataset #https://towardsdatascience.com/eda-of-the-iris-dataset-190f6dfd946d
@@ -46,23 +46,35 @@ with open('variables.txt', mode='w') as file_object: #open function returns the 
 #https://stackoverflow.com/questions/31247198/python-pandas-write-content-of-dataframe-into-text-file
 #iris_df.describe(include='all').np.savetxt("variables.txt")
 #file is closed automatically 
-print( )
-time.sleep(3)
-print('\033[1m' + 'A histogram of each variable will be displayed and saved as variables_histogram.png' + '\033[0m')
 
 #https://stackoverflow.com/questions/67300148/best-fit-to-a-histogramplot-iris
 # make the 'species' column categorical to fix the order
-iris_df['species'] = pd.Categorical(iris_df['species'])
+#iris_df['species'] = pd.Categorical(iris_df['species'])
+print('\033[1m' + 'Histograms of the variables will be displayed and saved as variables_histogram.png' + '\033[0m')
+time.sleep(3)
+print('\033[1m' + 'Figure will be displayed for 30 seconds.' + '\033[0m')
+time.sleep(3)
+print('\033[1m' + 'When you have viewed the chart press ANY KEY to close it and continue.' + '\033[0m')
+time.sleep(3)
 
 fig, axs = plt.subplots(2, 2, figsize=(10, 5))
 for col, ax in zip(iris_df.columns[:4], axs.flat):
-    sns.histplot(data=iris_df, x=col, kde=True, hue='species', common_norm=False, legend=ax==axs[0,0], ax=ax)
-    #sns.histplot(data=iris_df, x=col, kde=True, hue='species', common_norm=False, legend=ax==axs[0,0], ax=ax)
-matplotlib.rcParams['toolbar'] = 'None' 
+    sns.histplot(data=iris_df, x=col, hue='species', common_norm=False, legend=ax==axs[0,0], ax=ax)
+    matplotlib.rcParams['toolbar'] = 'None' 
 plt.tight_layout()
 plt.savefig("variables_histogram.png") #save the figure in the directory as a .png file
-plt.show()
+plt.waitforbuttonpress(30)
+plt.close()
 
+print()
+print('\033[1m' + 'Scatterplots of the variables will be displayed and saved as variables_pairplot.png' + '\033[0m')
+time.sleep(3)
+print('\033[1m' + 'Figure will be displayed for 30 seconds.' + '\033[0m')
+time.sleep(3)
+print('\033[1m' + 'When you have viewed the chart press ANY KEY to close it and continue.' + '\033[0m')
+time.sleep(3)
 sns.pairplot(data = iris_df,hue="species",height=3)
 plt.savefig("variables_pairplot.png") #save the figure in the directory as a .png file
-plt.show()
+plt.waitforbuttonpress(30) #https://www.geeksforgeeks.org/matplotlib-pyplot-waitforbuttonpress-in-python/
+plt.close()
+print('\033[1m' + 'END' + '\033[0m')
